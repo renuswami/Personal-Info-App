@@ -13,9 +13,9 @@ class FirebaseDemoRepo {
     fun setInfo(about: About){
 
         val info = hashMapOf<String, String>(
-            "Name" to "Renu Swami",
-            "Email" to "renuswami2001@gmail.com",
-            "Mobile No" to "8005769904"
+            "Name" to "",
+            "Email" to "",
+            "Mobile No" to ""
         )
         db.collection("Information")
             .document("String")
