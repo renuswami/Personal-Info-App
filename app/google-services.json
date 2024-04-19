@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "111103716626",
+    "project_id": "personinformationdemo",
+    "storage_bucket": "personinformationdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111103716626:android:84ebe2e593f904228ad7cb",
+        "android_client_info": {
+          "package_name": "com.renu.personinformationdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARmeacwHrnY_AWVcqf5M4LZNdtzJ2lo3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
