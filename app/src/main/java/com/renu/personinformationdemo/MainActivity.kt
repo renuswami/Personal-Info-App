@@ -16,17 +16,20 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewModelScope
 import com.renu.personinformationdemo.ui.theme.PersonInformationDemoTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val mainDemoViewModel : MainDemoViewModel by viewModels()
-            val getData = mainDemoViewModel.state.value
+            val mainDemoViewModel: MainDemoViewModel by viewModels()
 
             PersonInformationDemoTheme {
                 // A surface container using the 'background' color from the theme
@@ -34,31 +37,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Box(modifier = Modifier.fillMaxSize(),
-                        ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
                         Column(
                             modifier = Modifier.align(Alignment.Center),
                             verticalArrangement = Arrangement.Center
                         ) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Button(onClick = { mainDemoViewModel.setInfo() }) {
-                                    Text(text = "Set Data")
-                                }
+                            Button(onClick = { mainDemoViewModel.setInfo() }) {
+                                Text(text = "Set Data")
                             }
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                mainDemoViewModel.getData()
-                                getData.let { info ->
-                                    Text(text = info.name)
-                                    Text(text = info.email)
-                                    Text(text = info.age)
-                                }
+                            Button(onClick = { mainDemoViewModel.getInfo() }) {
+                                Text(text = "Get Data")
                             }
+                            val info = mainDemoViewModel.about.value
+                            Text(text = info.name, style = TextStyle(fontSize = 20.sp))
+                            Text(text = info.email, style = TextStyle(fontSize = 20.sp))
+                            Text(text = info.age, style = TextStyle(fontSize = 20.sp))
                         }
                     }
                 }

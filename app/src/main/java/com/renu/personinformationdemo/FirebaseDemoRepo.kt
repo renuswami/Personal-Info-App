@@ -4,12 +4,13 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await
 
 class FirebaseDemoRepo {
     private val db = Firebase.firestore
 
-    fun setInfo(){
+    fun setInfo(about: About){
 
         val info = hashMapOf<String, String>(
             "Name" to "Renu Swami",
@@ -18,20 +19,14 @@ class FirebaseDemoRepo {
         )
         db.collection("Information")
             .document("String")
-            .set(info)
+            .set(about)
     }
-    suspend fun getDataFromFireStore(): About {
-        val db = FirebaseFirestore.getInstance()
-        var about = About()
 
-        try {
-            db.collection("about").get().await().map {
-                val result = it.toObject(About::class.java)
-                about = result
-            }
-        } catch (e: FirebaseFirestoreException) {
-            Log.d("error", "getDataFromFireStore: $e")
-        }
-        return about
+    suspend fun getInfo(): About?{
+        return db.collection("Information")
+            .document("String")
+            .get()
+            .await()
+            .toObject(About::class.java)
     }
 }

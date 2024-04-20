@@ -1,7 +1,7 @@
 package com.renu.personinformationdemo
 
 data class About(
-    val name: String = "",
-    val age: String = "",
-    val email: String = ""
+    val name: String = "renu",
+    val age: String = "23",
+    val email: String = "1234512345"
 )
